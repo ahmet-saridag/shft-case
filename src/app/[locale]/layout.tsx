@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/global.scss";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
+import { Flowbite, ThemeModeScript } from "flowbite-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +21,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, locale }: RootLayoutProps) {
   return (
     <html lang={locale}>
-      <body className={inter.className}>{children}</body>
+      <head>
+        <ThemeModeScript />
+      </head>
+      <body className={inter.className}>
+        <Header />
+        {children}
+        <Footer/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+      </body>
     </html>
   );
 }
