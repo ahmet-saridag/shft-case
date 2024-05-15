@@ -1,10 +1,60 @@
+"use client"
 import Image from "next/image";
 import VercelLogo from "@/public/vercel.svg";
 import NextLogo from "@/public/next.svg";
+import { useEffect,useState } from "react";
 // import { useTranslations } from "next-intl";
+import { useGeneralStore } from '@/providers/GeneralStoreProvider'
+import { useRouter } from 'next/navigation'
 
 function Header() {
+  const router = useRouter();
   //   const t = useTranslations("Home");
+  const [isLoggin, setIsLoggin] = useState(false);
+  const [profileData, setProfileData]: any = useState([]);
+  const { userData,setUserData, setIsSignUp } = useGeneralStore(
+    (state) => state,
+  )
+
+  useEffect(() => {
+    if(userData.length > 0  || localStorage.getItem("userData")){
+      setIsLoggin(true);
+    }
+    else {
+      setIsLoggin(false);
+    }
+    // @ts-ignore
+   const data: any = JSON.parse(localStorage.getItem("userData"));
+   if(data){
+    setProfileData(data);
+   }
+  }, [userData]);
+
+
+  const loginController = () => {
+    if(isLoggin){
+      setUserData([]);
+      localStorage.removeItem("userData");
+      setProfileData([]);
+      setIsSignUp(true);
+      router.push("/en/login")
+    }
+    else {
+      router.push("/en/login")
+      setIsSignUp(false);
+    }
+  }
+
+  const detailController = () => {
+    if(isLoggin){
+      router.push("/en/jobs")
+    }
+    else {
+      setIsSignUp(true);
+      router.push("/en/login")
+    }
+  }
+
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -20,45 +70,32 @@ function Header() {
           </span>
         </a>
 
-        <div className="flex items-center justify-center  md:order-2">
-          {/* <button
+        <div className="md:flex hidden items-center justify-center  md:order-2">
+          <button
+                      onClick={detailController}
+
             type="button"
             className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-5 py-2.5 text-center"
           >
-            Login
+            {isLoggin ? "Job List" : "Login"}
           </button>
           <button
+            onClick={loginController}
             type="button"
             className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-xs px-5 py-2.5 text-center mx-2"
           >
-            Sign up
-          </button> */}
-          <div className="md:flex  hidden">
-            {" "}
-            <button
-              type="button"
-              className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            >
-              Pink to Orange
-            </button>
-            <button
-              type="button"
-              className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            >
-              Red to Yellow
-            </button>
-          </div>
-
-          <div className="hidden md:flex items-center gap-4 ml-2">
+            {isLoggin ? "Log out" : "Sign up"}
+          </button>
+          <div className={isLoggin ? "hidden md:flex items-center gap-4 ml-2" : "hidden"}>
             <img
               className="w-10 h-10 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              src={profileData?.user?.profileImage ? profileData?.user?.profileImage : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
               alt=""
             />
             <div className="font-medium dark:text-white">
-              <div>hr@shft.co</div>
+              <div>{profileData?.user?.email ? profileData?.user?.email : "hr@shft.co"}</div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                Joined in August 2014
+                Joined in May 2024
               </div>
             </div>
           </div>
@@ -78,7 +115,7 @@ function Header() {
               <path
                 d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
                 stroke="#fff"
-                stroke-width="300"
+                strokeWidth="300"
               />
               <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
               <g fill="#fff">
@@ -126,8 +163,8 @@ function Header() {
                       id="flag-icon-css-us"
                       viewBox="0 0 512 512"
                     >
-                      <g fill-rule="evenodd">
-                        <g stroke-width="1pt">
+                      <g fillRule="evenodd">
+                        <g strokeWidth="1pt">
                           <path
                             fill="#bd3d44"
                             d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
@@ -183,9 +220,9 @@ function Header() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>

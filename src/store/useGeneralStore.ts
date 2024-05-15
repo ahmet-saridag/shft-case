@@ -1,8 +1,19 @@
-import { create } from "zustand";
+// src/stores/general-store.ts
+import { createStore } from 'zustand/vanilla'
 
-const useStore = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state: any) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears: any) => set({ bears: newBears }),
-}));
+
+
+export const defaultInitState = {
+  userData: [],
+  isSignUp: false
+}
+
+export const createGeneralStore = (
+  initState = defaultInitState,
+) => {
+  return createStore((set) => ({
+    ...initState,
+    setUserData: (data:any) => set((state:any) => ({ userData: data})),
+    setIsSignUp: (auth:boolean) => set((state:any) => ({ isSignUp: auth})),
+  }))
+}

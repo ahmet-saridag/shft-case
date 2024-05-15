@@ -5,7 +5,7 @@ type environmentType = {
 
 const environment: environmentType = {
   production: false,
-  baseUrl: "https://novel-project-ntj8t.ampt.app/",
+  baseUrl: "https://novel-project-ntj8t.ampt.app/api/",
 };
 
 export default environment;
