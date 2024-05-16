@@ -1,16 +1,21 @@
 import Image from "next/image";
 import VercelLogo from "@/public/vercel.svg";
 import NextLogo from "@/public/next.svg";
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 function Banner() {
-  //   const t = useTranslations("Home");
+  const t = useTranslations("Page");
+
+  const bannerData = {
+    title:t("Banner.title"),
+    desc:t("Banner.desc")
+  }
 
   return (
 <>
 
 <div className="md:p-0 p-10 md:h-dvh md:w-4/5 w-full mx-auto flex flex-col justify-center items-center">
-    <p className="text-gray-500 dark:text-gray-400">Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.</p>
+    <p className="text-gray-500 dark:text-gray-400">{bannerData?.title}</p>
 <div className="inline-flex items-center justify-center w-full">
     <hr className="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
     <div className="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
@@ -19,7 +24,7 @@ function Banner() {
   </svg>
     </div>
 </div>
-<p className="text-gray-500 dark:text-gray-400">Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil.</p>
+<p className="text-gray-500 dark:text-gray-400">{bannerData?.desc}</p>
 </div>
 
 

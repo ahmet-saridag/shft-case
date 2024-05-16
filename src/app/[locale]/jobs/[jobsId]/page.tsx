@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 import LoadingComponent from "@/components/loading"
 
 
-export default function Jobs() {
+export default function Jobs({ params }: any) {
   const {data , isLoading, isError, isFetching, error} = useQuery<any>({
     queryKey: ['jobs'],
     queryFn: async () => {
@@ -53,9 +53,10 @@ export default function Jobs() {
       <Filters />
       <JobCard jobsData={data} />
       <div className='w-full h-56 flex justify-center items-center'>
-        <Pagination />
+        <Pagination params={params} jobsData={data} />
       </div>
       </div>
+      {/* <div>My Post: {params}</div> */}
       <div className='col-span-12 md:col-span-4'>
         <Profile jobsData={data}/>
       </div>

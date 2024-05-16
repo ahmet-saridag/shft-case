@@ -1,7 +1,39 @@
 {
-  "Home": {
-    "navigation": {
-      "title": "Ahmet Saridag (en)"
+   "Page": {
+    "Header": {
+      "login":"Login",
+      "signIn":"Sign in",
+      "turkish":" Turkish",
+      "english":"English (US)",
+      "logout":"Logout",
+      "jobList":"Job List",
+      "date":"Joined in May 2024"
+    },
+    "Login": {
+        "email":"Your email",
+        "createAccount":"Create an account",
+        "signTitle":"Sign in to your account",
+        "password":"Password",
+        "rememberMe":"Remember me",
+        "forgotPassword":"Forgot your password?",
+        "login":" Login",
+        "signUp":" Sign up",
+        "alreadyAccount":"Already have an account?",
+        "accountYet":"Don’t have an account yet?",
+        "loginHere":" Login here"
+    },
+    "Banner": {
+      "title":"Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.",
+      "desc":"Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil."
+    },
+
+    "Footer": {
+      "resources":"Resources",
+      "followUs":"Follow us",
+      "legal":"Legal",
+      "copyright":"All Rights Reserved.",
+      "privacy":"Privacy Policy",
+      "terms":"Terms And Conditions"
     }
-  }
+   }
 }

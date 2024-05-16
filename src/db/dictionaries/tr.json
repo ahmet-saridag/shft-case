@@ -1,7 +1,38 @@
-{
-  "Home": {
-    "navigation": {
-      "title": "Ahmet Sarıdağ"
+{  
+  "Page": {  
+    "Header": {
+    "login":"Giriş yap",
+    "signIn":"Üye ol",
+    "turkish":" Türkçe",
+    "english":"İngilizce",
+    "logout":"Çıkış yap",
+    "jobList":"İlan listesi",
+    "date":"Mayıs 2024 de katıldı"
+    },
+    "Login": {
+      "email":"Email Adresin",
+      "createAccount":"Üye ol",
+      "signTitle":"Hesabınıza giriş yapın",
+      "password":"Şifre",
+      "rememberMe":"Beni hatırla",
+      "forgotPassword":"Şifremi unuttum",
+      "login":"Giriş yap",
+      "signUp":" Üye ol",
+      "alreadyAccount":"Hesabınız var mı?",
+      "accountYet":"Hesabınız henüz yok mu?",
+      "loginHere":" Giriş yap"
+    },
+    "Banner": {
+      "title":"Besim Tibuk",
+      "desc":"Besim Tibuk[a] (d. 14 Nisan 1945, Fındıklı), Türk turizmci, iş insanı ve eski siyasetçi. Net Holding Yönetim Kurulu başkanı ve Liberal Demokrat Partinin (LDP) kurucusu, eski genel başkanı ve onursal başkanıdır."
+    },
+    "Footer": {
+      "resources":"Kaynaklar",
+      "followUs":"Bizi takip edin",
+      "legal":"Yasal",
+      "copyright":"Bütün hakları gizlidir.",
+      "privacy":"Gizlilik Politikası",
+      "terms":"Şartlar ve Şartlar Koşullar"
     }
   }
 }

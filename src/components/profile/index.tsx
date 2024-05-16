@@ -3,18 +3,30 @@ import React from "react";
 import { useEffect,useState } from "react";
 import { useGeneralStore } from '@/providers/GeneralStoreProvider'
 
-export default function Profile() {
+export default function Profile({jobsData}:any) {
   const [profileData, setProfileData]: any = useState([]);
+  const [appliedJobs, setAppliedJobs]: any = useState([]);
+
   const { userData,setUserData, setIsSignUp } = useGeneralStore(
     (state) => state,
   )
+  
 
   useEffect(() => {
     // @ts-ignore
    const data: any = JSON.parse(localStorage.getItem("userData"));
    if(data){
     setProfileData(data);
-   }
+    let selectedJobs: any = [];
+     jobsData.data.map((s:any) => 
+     {
+      if(data.user.appliedJobs.includes(s.id)){
+        selectedJobs.push(s)
+      }
+     }
+     )
+     setAppliedJobs(selectedJobs)    
+    }
 
   }, [userData]);
 
@@ -36,15 +48,17 @@ export default function Profile() {
 
           <h1 className="mt-5">{profileData?.user?.appliedJobs?.length > 0 ? "Applied Jobs" : ""}</h1>
         </div>
-        {
-           profileData?.user?.appliedJobs?.map((job:any) => {
-            <div className="flex flex-col justify-center items-center  w-full border md:p-5 p-3">
+        { appliedJobs?.length > 0 &&
+          appliedJobs?.map((job:any) => {
+            return (
+              <div key={job.id} className="flex flex-col justify-center items-center  w-full border md:p-5 p-3">
                 <div className="flex flex-col gap-5">
-                <h1 className="md:text-4xl text-xl text-center font-bold">{job.name}</h1>
+                <h1 className="md:text-2xl text-xl text-center font-bold">{job.name}</h1>
                 <h2 className="md:text-xl text-md"><span className="font-bold">Company Name:</span>{job.companyName}</h2>
                 <h2 className="md:text-xl text-md"><span className="font-bold">Location: </span>{job.location}</h2>
                 </div>
-            </div>            
+            </div>  
+            )          
            })
         }
         </div>
