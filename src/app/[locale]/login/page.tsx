@@ -1,9 +1,9 @@
 import { http } from "@/services/http";
-import { useGeneralStore } from '@/providers/GeneralStoreProvider'
-import LoginComponent from "@/components/login"
+import { useGeneralStore } from "@/providers/GeneralStoreProvider";
+import LoginComponent from "@/components/login";
 import { useTranslations } from "next-intl";
 
-export default function Login() {
+export default function Login({ params }: any) {
   const t = useTranslations("Page");
 
   const loginData = {
@@ -17,10 +17,8 @@ export default function Login() {
     signUp: t("Login.signUp"),
     alreadyAccount: t("Login.alreadyAccount"),
     accountYet: t("Login.accountYet"),
-    loginHere: t("Login.loginHere")
-  }
+    loginHere: t("Login.loginHere"),
+  };
 
-  return (
-    <LoginComponent translateData={loginData} />
-  );
+  return <LoginComponent params={params} translateData={loginData} />;
 }

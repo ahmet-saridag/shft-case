@@ -1,39 +1,64 @@
 {
-   "Page": {
+  "Page": {
     "Header": {
-      "login":"Login",
-      "signIn":"Sign in",
-      "turkish":" Turkish",
-      "english":"English (US)",
-      "logout":"Logout",
-      "jobList":"Job List",
-      "date":"Joined in May 2024"
+      "login": "Login",
+      "signIn": "Sign in",
+      "turkish": " Turkish",
+      "english": "English (US)",
+      "logout": "Logout",
+      "jobList": "Job List",
+      "date": "Joined in May 2024"
     },
     "Login": {
-        "email":"Your email",
-        "createAccount":"Create an account",
-        "signTitle":"Sign in to your account",
-        "password":"Password",
-        "rememberMe":"Remember me",
-        "forgotPassword":"Forgot your password?",
-        "login":" Login",
-        "signUp":" Sign up",
-        "alreadyAccount":"Already have an account?",
-        "accountYet":"Don’t have an account yet?",
-        "loginHere":" Login here"
+      "email": "Your email",
+      "createAccount": "Create an account",
+      "signTitle": "Sign in to your account",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot your password?",
+      "login": " Login",
+      "signUp": " Sign up",
+      "alreadyAccount": "Already have an account?",
+      "accountYet": "Don’t have an account yet?",
+      "loginHere": " Login here"
     },
     "Banner": {
-      "title":"Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.",
-      "desc":"Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil."
+      "title": "Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.",
+      "desc": "Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil."
     },
 
     "Footer": {
-      "resources":"Resources",
-      "followUs":"Follow us",
-      "legal":"Legal",
-      "copyright":"All Rights Reserved.",
-      "privacy":"Privacy Policy",
-      "terms":"Terms And Conditions"
+      "resources": "Resources",
+      "followUs": "Follow us",
+      "legal": "Legal",
+      "copyright": "All Rights Reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms And Conditions"
+    },
+    "Filters": {
+      "title": "Basic Filter",
+      "search": "Search"
+    },
+    "Profile": {
+      "appliedJobs": "Applied Jobs",
+      "date": "Joined in May 2024",
+      "companyName": "Company Name: ",
+      "location": "Location: "
+    },
+    "JobCard": {
+      "location": "Location: ",
+      "currency": "$",
+      "detail": "Detail",
+      "withdraw": "Withdraw",
+      "applyJob": "Apply Job",
+      "companyName": "Company Name: ",
+      "jobName": "Job Name: ",
+      "createdAt": "Created At: ",
+      "keyword": "Keyword",
+      "productDescription": "Product Description",
+      "close": "CLOSE",
+      "apply": "APPLY",
+      "salary": "Salary: "
     }
-   }
+  }
 }

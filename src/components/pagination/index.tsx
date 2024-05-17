@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-function PaginationComponent({jobsData , params}: any) {
-  
+function PaginationComponent({ jobsData, params }: any) {
   const totalPages = Math.ceil(jobsData?.data?.length / 10);
 
   const goToPrevPage = () => {
-      window.location.pathname = params?.locale + "/jobs/" + (params?.jobsId - 1);
+    window.location.pathname = params?.locale + "/jobs/" + (params?.jobsId - 1);
   };
 
   const goToNextPage = () => {
-    window.location.pathname = params?.locale + "/jobs/" + (Number(params?.jobsId) + 1);
+    window.location.pathname =
+      params?.locale + "/jobs/" + (Number(params?.jobsId) + 1);
   };
 
   return (
@@ -55,13 +55,16 @@ function PaginationComponent({jobsData , params}: any) {
               </a>
             </button>
             <div className="mx-5">
- 
-            {params?.jobsId} /  {jobsData?.data?.length}
+              {params?.jobsId} / {jobsData?.data?.length}
             </div>
             <li
               onClick={goToNextPage}
               className={
-                params?.jobsId ? (Number(params?.jobsId) === 7 ? "cursor-not-allowed" : "cursor-pointer") : ""
+                params?.jobsId
+                  ? Number(params?.jobsId) === 7
+                    ? "cursor-not-allowed"
+                    : "cursor-pointer"
+                  : ""
               }
             >
               <a className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 border border-gray-300 rounded-e-lg hover:bg-white hover:text-blue-500">
@@ -83,13 +86,16 @@ function PaginationComponent({jobsData , params}: any) {
                 </svg>
               </a>
             </li>
-            <select id="small" className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option defaultValue={10}>10</option>
-    <option value="US">20</option>
-    <option value="US">30</option>
-    <option value="US">40</option>
-    <option value="US">50</option>
-  </select>
+            <select
+              id="small"
+              className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option defaultValue={10}>10</option>
+              <option value="US">20</option>
+              <option value="US">30</option>
+              <option value="US">40</option>
+              <option value="US">50</option>
+            </select>
           </ul>
         </nav>
       </div>
