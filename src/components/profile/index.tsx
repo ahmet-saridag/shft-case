@@ -35,7 +35,7 @@ export default function Profile({ translateData }: any) {
     if (selectedJobs.length > 0) {
       jobsApplied = selectedJobs;
     }
-  }
+  };
 
   return (
     <>

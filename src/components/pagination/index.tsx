@@ -40,7 +40,7 @@ function PaginationComponent({ params }: any) {
       perPage +
       "&search%5Bfield%5D=name&search%5Bquery%5D=" +
       query)
-    }
+    };
   };
 
 

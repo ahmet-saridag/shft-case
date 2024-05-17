@@ -47,7 +47,12 @@ function Header({ translateData, params }: any) {
 
   const detailController = () => {
     if (isLoggin) {
-      router.push("/" + params.locale + "/" + "jobs?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D=");
+      router.push(
+        "/" +
+          params.locale +
+          "/" +
+          "jobs?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D="
+      );
     } else {
       setIsSignUp(true);
       router.push("/" + params.locale + "/login");
@@ -59,11 +64,15 @@ function Header({ translateData, params }: any) {
     if (lang === "en") {
       setCurrentLanguage("en");
       let newUrl = currentUrl.replace("/tr", "/en");
-      router.push(newUrl + "/?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D=");
+      router.push(
+        newUrl + "/?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D="
+      );
     } else {
       setCurrentLanguage("tr");
       let newUrl = currentUrl.replace("/en", "/tr");
-      router.push(newUrl + "/?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D=");
+      router.push(
+        newUrl + "/?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D="
+      );
     }
   };
 

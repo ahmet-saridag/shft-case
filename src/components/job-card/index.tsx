@@ -8,7 +8,6 @@ import { http } from "@/services/http";
 
 
 export default function JobCard({ translateData }: any) {
-  
   const [profileData, setProfileData]: any = useState([]);
   const [isModalOpen, setIsModalOpen]: any = useState();
   const [modalData, setModalData]: any = useState({});

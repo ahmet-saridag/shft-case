@@ -1,16 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { useSearchParams,useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Filters({ translateData, params }: any) {
   const [selectFilter, setSelectFilter] = useState(10); // Declare a state variable...
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const perPage:any = searchParams.get("perPage");
+  const perPage: any = searchParams.get("perPage");
   let pageNumber: any = searchParams.get("page");
   const query: any = searchParams.get("search[query]");
-
 
   const options = [
     { value: 10, label: "10" },
@@ -18,60 +17,61 @@ export default function Filters({ translateData, params }: any) {
     { value: 30, label: "30" },
     { value: 40, label: "40" },
     { value: 50, label: "50" },
-  ]
+  ];
 
-  const hanldeSelectFilter = (value:any) => {
+  const hanldeSelectFilter = (value: any) => {
     setSelectFilter(value);
     if (perPage) {
-      window.location.href = window.location.origin + "/" + params.locale + ("/jobs?page=" +
-      pageNumber +
-      "&perPage=" +
-      value +
-      "&search%5Bfield%5D=name&search%5Bquery%5D=" +
-      query)
+      window.location.href =
+        window.location.origin +
+        "/" +
+        params.locale +
+        ("/jobs?page=" +
+          pageNumber +
+          "&perPage=" +
+          value +
+          "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+          query);
     }
-  }
+  };
 
-
-  const handleSearchInput = (value:any) => {
-     if (perPage) {
+  const handleSearchInput = (value: any) => {
+    if (perPage) {
       setSelectFilter(value);
     }
-  }
-
+  };
 
   const submitSearch = () => {
     if (perPage) {
-      window.location.href = window.location.origin + "/" + params.locale + ("/jobs?page=" +
-      pageNumber +
-      "&perPage=" +
-      perPage +
-      "&search%5Bfield%5D=name&search%5Bquery%5D=" +
-      selectFilter)
-      }
-  }
-
-
-
-
-
+      window.location.href =
+        window.location.origin +
+        "/" +
+        params.locale +
+        ("/jobs?page=" +
+          pageNumber +
+          "&perPage=" +
+          perPage +
+          "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+          selectFilter);
+    }
+  };
 
   return (
     <div className="w-full h-20 flex items-center justify-center">
       <div>{translateData?.title ? translateData?.title : "Basic Filter"}</div>
       <div>
-      <select
-              id="small"
-              value={Number(perPage)} // ...force the select's value to match the state variable...
-             onChange={e => hanldeSelectFilter(e.target.value)} 
-              className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-      {options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-            </select>
+        <select
+          id="small"
+          value={Number(perPage)} // ...force the select's value to match the state variable...
+          onChange={(e) => hanldeSelectFilter(e.target.value)}
+          className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="w-80 ml-5">
@@ -107,7 +107,9 @@ export default function Filters({ translateData, params }: any) {
               defaultValue={query}
               className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder={
-                translateData?.search ? translateData?.search : "Job Name Search  "
+                translateData?.search
+                  ? translateData?.search
+                  : "Job Name Search  "
               }
               required
             />
