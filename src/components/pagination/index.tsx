@@ -1,16 +1,60 @@
 "use client";
+import { useSearchParams,useRouter } from "next/navigation";
+import { useState } from "react";
 
-function PaginationComponent({ jobsData, params }: any) {
-  const totalPages = Math.ceil(jobsData?.data?.length / 10);
+function PaginationComponent({ params }: any) {
+  const [selectFilter, setSelectFilter] = useState(10); // Declare a state variable...
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const perPage:any = searchParams.get("perPage");
+  let pageNumber: any = searchParams.get("page");
+  const query = searchParams.get("search[query]");
+
+  const options = [
+    { value: 10, label: "10" },
+    { value: 20, label: "20" },
+    { value: 30, label: "30" },
+    { value: 40, label: "40" },
+    { value: 50, label: "50" },
+  ]
 
   const goToPrevPage = () => {
-    window.location.pathname = params?.locale + "/jobs/" + (params?.jobsId - 1);
+    if (pageNumber && Number(pageNumber) !== 1) {
+      let path = Number(pageNumber) - 1;
+      window.location.href = window.location.origin + "/" + params.locale + (        "/jobs?page=" +
+      path +
+      "&perPage=" +
+      perPage +
+      "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+      query)
+     }
   };
 
   const goToNextPage = () => {
-    window.location.pathname =
-      params?.locale + "/jobs/" + (Number(params?.jobsId) + 1);
+    if (pageNumber && Number(pageNumber) !== 7) {
+      let path = Number(pageNumber) + 1;
+      window.location.href = window.location.origin + "/" + params.locale + ("/jobs?page=" +
+      path +
+      "&perPage=" +
+      perPage +
+      "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+      query)
+    }
   };
+
+
+  const hanldeSelectFilter = (value:any) => {
+    setSelectFilter(value);
+    if (perPage) {
+      window.location.href = window.location.origin + "/" + params.locale + ("/jobs?page=" +
+      pageNumber +
+      "&perPage=" +
+      value +
+      "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+      query)
+    }
+  }
 
   return (
     <>
@@ -55,7 +99,7 @@ function PaginationComponent({ jobsData, params }: any) {
               </a>
             </button>
             <div className="mx-5">
-              {params?.jobsId} / {jobsData?.data?.length}
+              {pageNumber} / {perPage}
             </div>
             <li
               onClick={goToNextPage}
@@ -88,13 +132,16 @@ function PaginationComponent({ jobsData, params }: any) {
             </li>
             <select
               id="small"
-              className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={Number(perPage)} // ...force the select's value to match the state variable...
+             onChange={e => hanldeSelectFilter(e.target.value)} 
+             defaultValue={Number(perPage)}
+             className="text-sm ml-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option defaultValue={10}>10</option>
-              <option value="US">20</option>
-              <option value="US">30</option>
-              <option value="US">40</option>
-              <option value="US">50</option>
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
             </select>
           </ul>
         </nav>

@@ -46,7 +46,7 @@ export default function LoginComponent({ translateData, params }: any) {
     } else {
       setIsFetching(false); //
       setUserData(userDataSet);
-      router.push("/" + params.locale + "/jobs/1");
+      router.push("/" + params.locale + "/" + "jobs?page=1&perPage=10&search%5Bfield%5D=name&search%5Bquery%5D=");
       localStorage.setItem("userData", JSON.stringify(userDataSet));
     }
   };

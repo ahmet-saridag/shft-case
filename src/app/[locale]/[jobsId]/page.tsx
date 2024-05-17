@@ -53,7 +53,7 @@ export default async function Jobs({ params }: any) {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="grid grid-cols-12 px-6 py-8 mx-auto lg:py-0 w-full">
         <div className="order-last md:order-first col-span-12 md:col-span-8 ">
-          <Filters translateData={filtersData} />
+          <Filters params={params} translateData={filtersData} />
           <div className="h-dvh overflow-y-scroll">
             <JobCard translateData={jobCardData} />
           </div>

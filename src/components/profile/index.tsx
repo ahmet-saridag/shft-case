@@ -28,7 +28,7 @@ export default function Profile({ translateData }: any) {
   if (data && profileData) {
     let selectedJobs: any = [];
     data?.data?.map((s: any) => {
-      if (profileData.user.appliedJobs.includes(s.id)) {
+      if (profileData?.user?.appliedJobs?.includes(s.id)) {
         selectedJobs.push(s);
       }
     });

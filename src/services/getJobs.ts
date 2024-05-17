@@ -1,7 +1,7 @@
 import { http } from "@/services/http";
 
-export default async function getJobs() {
-  // @ts-ignore
+export default async function getJobs(obj: Object) {
+    // @ts-ignore
   let profileData: any = JSON.parse(localStorage.getItem("userData"));
   if (profileData.accessToken) {
     const response = await http("jobs", "GET", {

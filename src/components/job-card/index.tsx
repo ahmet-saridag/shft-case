@@ -1,29 +1,54 @@
 "use client";
 import { useEffect, useState } from "react";
-import getJobs from "@/services/getJobs";
 import { useGeneralStore } from "@/providers/GeneralStoreProvider";
 import { useQuery } from "@tanstack/react-query";
 import LoadingComponent from "@/components/loading";
+import { useSearchParams,useRouter } from "next/navigation";
+import { http } from "@/services/http";
+
 
 export default function JobCard({ translateData }: any) {
+  
   const [profileData, setProfileData]: any = useState([]);
   const [isModalOpen, setIsModalOpen]: any = useState();
   const [modalData, setModalData]: any = useState({});
   const { userData, setUserData, setIsSignUp } = useGeneralStore(
     (state) => state
   );
+  const searchParams = useSearchParams();
+  const perPage = searchParams.get("perPage");
+  let pageNumber: any = searchParams.get("page");
+  const query = searchParams.get("search[query]");
 
   useEffect(() => {
     // @ts-ignore
     const userData: any = JSON.parse(localStorage.getItem("userData"));
     if (userData) {
       setProfileData(userData);
+      console.log(query)
     }
   }, []);
 
   const { data, isLoading, isError, isFetching, error } = useQuery<any>({
     queryKey: ["jobs"],
-    queryFn: getJobs,
+    queryFn: async () => {
+      // @ts-ignore
+      let profileData: any = JSON.parse(localStorage.getItem("userData"));
+      if (profileData.accessToken) {
+        const response = await http(        "jobs?page=" +
+        pageNumber +
+        "&perPage=" +
+        perPage +
+        "&search%5Bfield%5D=name&search%5Bquery%5D=" +
+        (query ? query : "a"), "GET", {
+          headers: {
+            application: "application/json",
+            Authorization: profileData.tokenType + " " + profileData.accessToken,
+          },
+        });
+        return response;
+      }
+    },
   });
 
   if (isFetching && isFetching) {
@@ -257,5 +282,14 @@ export default function JobCard({ translateData }: any) {
         )}
       </>
     );
+  }
+  else {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-4xl font-bold text-center text-red-500 dark:text-white">
+          No jobs avaliable!! (Please check your filters...)
+        </h1>
+      </div>
+    )
   }
 }
